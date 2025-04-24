@@ -30,6 +30,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+
     @PutMapping("/{id}")
     @Tag(name = "Update User", description = "Update a user in database")
     public UserDTO updateUser(@PathVariable long id, @RequestBody UserDTO userDTO) {
