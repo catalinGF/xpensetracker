@@ -5,7 +5,7 @@ import com.xpensetracker.app.exception.UserNotFoundException;
 import com.xpensetracker.app.model.UserDTO;
 import com.xpensetracker.app.repository.UserRepository;
 import com.xpensetracker.app.service.UserService;
-import com.xpensetracker.app.util.ModelConverter;
+import com.xpensetracker.app.util.UserConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,25 +20,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUserById(long id) {
-        User foundUser = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
-        return ModelConverter.convertEntitytoDTO(foundUser);
+    public UserDTO createUser(UserDTO userDTO) {
+        User user = UserConverter.convertDTOtoEntity(userDTO);
+        User createdUser = userRepository.save(user);
+        return UserConverter.convertEntitytoDTO(createdUser);
     }
 
     @Override
-    public UserDTO createUser(UserDTO userDTO) {
-        User user = ModelConverter.convertDTOtoEntity(userDTO);
-        User createdUser = userRepository.save(user);
-        return ModelConverter.convertEntitytoDTO(createdUser);
+    public UserDTO getUserById(long id) {
+        User foundUser = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
+        return UserConverter.convertEntitytoDTO(foundUser);
     }
 
     @Override
     public UserDTO updateUser(long id, UserDTO userDTO) {
-        User user = ModelConverter.convertDTOtoEntity(userDTO);
+        User user = UserConverter.convertDTOtoEntity(userDTO);
         user.setId(id);
         User updatedUser = userRepository.save(user);
-        return ModelConverter.convertEntitytoDTO(updatedUser);
+        return UserConverter.convertEntitytoDTO(updatedUser);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> getAllUsers() {
         List<User> allusers = userRepository.findAll();
         return allusers.stream()
-                .map(ModelConverter::convertEntitytoDTO)
+                .map(UserConverter::convertEntitytoDTO)
                 .toList();
     }
 }
