@@ -4,17 +4,17 @@ import com.xpensetracker.app.entity.Category;
 import com.xpensetracker.app.exception.CategoryNotFoundException;
 import com.xpensetracker.app.model.CategoryDTO;
 import com.xpensetracker.app.repository.CategoryRepository;
-import com.xpensetracker.app.service.CategoryService;
+import com.xpensetracker.app.service.api.CategoryApiService;
 import com.xpensetracker.app.util.CategoryConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryApiServiceImpl implements CategoryApiService {
 
     private final CategoryRepository categoryRepository;
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+    public CategoryApiServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 

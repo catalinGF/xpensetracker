@@ -2,8 +2,9 @@ package com.xpensetracker.app.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record UserDTO(@JsonProperty(access =JsonProperty.Access.READ_ONLY) long id,
+public record UserDTO(@JsonProperty(access = JsonProperty.Access.READ_ONLY) Long id,
                       String name,
-                      String email) {
+                      String email
+) {
 
 }

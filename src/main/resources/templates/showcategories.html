@@ -20,20 +20,20 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Nume</th>
-            <th>Email</th>
+            <th>User ID</th>
+            <th>Denumire</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.id}">1</td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.email}"></td>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.id}">1</td>
+            <td th:text="${category.userId}"></td>
+            <td th:text="${category.name}"></td>
         </tr>
         </tbody>
     </table>
     <p>
-        <a class="btn btn-success" href="/Add-user">Add user!</a>
+        <a class="btn btn-success" href="/Add-Category">Add user!</a>
     </p>
 </div>
 

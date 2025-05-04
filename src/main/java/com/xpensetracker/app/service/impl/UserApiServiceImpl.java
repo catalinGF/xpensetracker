@@ -4,18 +4,18 @@ import com.xpensetracker.app.entity.User;
 import com.xpensetracker.app.exception.UserNotFoundException;
 import com.xpensetracker.app.model.UserDTO;
 import com.xpensetracker.app.repository.UserRepository;
-import com.xpensetracker.app.service.UserService;
+import com.xpensetracker.app.service.api.UserApiService;
 import com.xpensetracker.app.util.UserConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserApiServiceImpl implements UserApiService {
 
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserApiServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -23,26 +23,26 @@ public class UserServiceImpl implements UserService {
     public UserDTO createUser(UserDTO userDTO) {
         User user = UserConverter.convertDTOtoEntity(userDTO);
         User createdUser = userRepository.save(user);
-        return UserConverter.convertEntitytoDTO(createdUser);
+        return UserConverter.convertEntityDTO(createdUser);
     }
 
     @Override
-    public UserDTO getUserById(long id) {
+    public UserDTO getUserById(Long id) {
         User foundUser = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
-        return UserConverter.convertEntitytoDTO(foundUser);
+        return UserConverter.convertEntityDTO(foundUser);
     }
 
     @Override
-    public UserDTO updateUser(long id, UserDTO userDTO) {
+    public UserDTO updateUser(Long id, UserDTO userDTO) {
         User user = UserConverter.convertDTOtoEntity(userDTO);
         user.setId(id);
         User updatedUser = userRepository.save(user);
-        return UserConverter.convertEntitytoDTO(updatedUser);
+        return UserConverter.convertEntityDTO(updatedUser);
     }
 
     @Override
-    public void deleteUserById(long id) {
+    public void deleteUserById(Long id) {
         userRepository.deleteById(id);
 
     }
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> getAllUsers() {
         List<User> allusers = userRepository.findAll();
         return allusers.stream()
-                .map(UserConverter::convertEntitytoDTO)
+                .map(UserConverter::convertEntityDTO)
                 .toList();
     }
 }

@@ -1,20 +1,25 @@
 package com.xpensetracker.app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     private String email;
 
-    protected User() {
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Category> categories;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Expense> expenses;
+
+    public User() {
     }
 
     public User(String name, String email) {
@@ -49,5 +54,9 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
     }
 }

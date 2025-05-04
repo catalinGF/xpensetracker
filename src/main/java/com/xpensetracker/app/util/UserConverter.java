@@ -8,7 +8,7 @@ public class UserConverter {
     private UserConverter() {
     }
 
-    public static UserDTO convertEntitytoDTO(User user) {
+    public static UserDTO convertEntityDTO(User user) {
         return new UserDTO(user.getId(), user.getName(), user.getEmail());
     }
     public static User convertDTOtoEntity(UserDTO userDTO) {
