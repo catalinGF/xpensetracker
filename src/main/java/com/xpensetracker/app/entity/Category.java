@@ -56,4 +56,8 @@ public class Category {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
 }

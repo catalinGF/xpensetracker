@@ -30,21 +30,19 @@
             <td th:text="${user.email}"></td>
             <td>
                 <a class="btn btn-primary" href="/users/edit?id=1">Edit</a>
-              <!--  <a th:if="${!user.hasCategories}"
+                <a th:if="${!user.hasCategories}"
                    th:href="@{'/users/delete/' + ${user.id}}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('Do you really want to delete this user?');">
-                    Șterge
+                    Delete
                 </a>
-                <span th:if="${user.hasCategories}" class="text-muted">Cannot be delete- has categories assigned</span>-->
+                <span th:if="${user.hasCategories}" class="text-muted">Cannot be delete- has categories assigned</span>
             </td>
         </tr>
         </tbody>
     </table>
     <p>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addUserModal">Add user!</button>
-
-
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addUserModal">Add user</button>
 
         <!-- Modal -->
     <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
@@ -57,7 +55,6 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
                     <div class="modal-body">
                         <!-- Hidden field for id cannot be null -->
                         <input type="hidden" th:field="*{id}" />
@@ -81,9 +78,6 @@
             </div>
         </div>
     </div>
-
-
-
     </p>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

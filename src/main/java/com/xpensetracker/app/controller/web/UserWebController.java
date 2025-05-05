@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Comparator;
+import java.util.List;
+
 @Controller
 public class UserWebController {
 
@@ -22,8 +25,9 @@ public class UserWebController {
     /*Bellow are the methods for interaction with Thymeleaf*/
     @GetMapping("/showusers")
     public String listUsers(Model model) {
-        model.addAttribute("users", userWebService.getAllUsers());
-        model.addAttribute("user", new UserDTO(null, "",""));
+        List<UserDTO> users = userWebService.getAllUsers().stream().sorted(Comparator.comparing(UserDTO::id)).toList();
+        model.addAttribute("users", users);
+        model.addAttribute("user", new UserDTO(null, "","", false));
         return "showusers";
     }
 

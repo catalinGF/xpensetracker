@@ -13,7 +13,9 @@ public class CategoryConverter {
 
     public static CategoryDTO convertEntitytoDTO(Category category) {
         Long userId = category.getUser() != null ? category.getUser().getId() : null;
-        return new CategoryDTO(category.getId(), category.getName(), userId);
+        String userName = category.getUser() != null ? category.getUser().getName() : null;
+        Boolean hasExpenses = category.getExpenses() != null && !category.getExpenses().isEmpty();
+        return new CategoryDTO(category.getId(), category.getName(), userId, userName, hasExpenses);
     }
 
     public static Category convertDTOtoEntity(CategoryDTO categoryDTO) {

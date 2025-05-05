@@ -9,7 +9,8 @@ public class UserConverter {
     }
 
     public static UserDTO convertEntityDTO(User user) {
-        return new UserDTO(user.getId(), user.getName(), user.getEmail());
+        boolean hasCategories = user.getCategories() != null && !user.getCategories().isEmpty();
+        return new UserDTO(user.getId(), user.getName(), user.getEmail(), hasCategories);
     }
     public static User convertDTOtoEntity(UserDTO userDTO) {
         return new User(userDTO.id(), userDTO.name(), userDTO.email());
