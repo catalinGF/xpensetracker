@@ -23,14 +23,14 @@ public class UserServiceImpl implements UserService {
     public UserDTO createUser(UserDTO userDTO) {
         User user = UserConverter.convertDTOtoEntity(userDTO);
         User createdUser = userRepository.save(user);
-        return UserConverter.convertEntityDTO(createdUser);
+        return UserConverter.convertEntityToDTO(createdUser);
     }
 
     @Override
     public UserDTO getUserById(Long id) {
         User foundUser = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
-        return UserConverter.convertEntityDTO(foundUser);
+        return UserConverter.convertEntityToDTO(foundUser);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
         User user = UserConverter.convertDTOtoEntity(userDTO);
         user.setId(id);
         User updatedUser = userRepository.save(user);
-        return UserConverter.convertEntityDTO(updatedUser);
+        return UserConverter.convertEntityToDTO(updatedUser);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> getAllUsers() {
         List<User> allusers = userRepository.findAll();
         return allusers.stream()
-                .map(UserConverter::convertEntityDTO)
+                .map(UserConverter::convertEntityToDTO)
                 .toList();
     }
 }

@@ -1,9 +1,13 @@
-Expense Tracker - urmărirea cheltuielilor
+Expense Tracker - expense tracking
 
-Ideea pornește de la excelurile care le țin cu urmărirea cheltuielilor de câțiva ani.
+The idea starts from the excels that have been keeping track of expenses for several years.
 
-Aplicația conține o bază de date relațională PostgresSQL cu mai multe tabele:
+The application contains a PostgresSQL relational database with 3  tables:
 
-- Utilizatori
-- Categorii
-- Cheltuieli
+- Users
+- Categories
+- Expenses
+
+For a tiny GUI I have used Thymeleaf - a template engine for Java. (documentation, examples, etc.)
+
+https://www.thymeleaf.org/
