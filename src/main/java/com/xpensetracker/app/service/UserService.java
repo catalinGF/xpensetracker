@@ -1,10 +1,10 @@
-package com.xpensetracker.app.service.api;
+package com.xpensetracker.app.service;
 
 import com.xpensetracker.app.model.UserDTO;
 
 import java.util.List;
 
-public interface UserApiService {
+public interface UserService {
 
     UserDTO getUserById(Long id);
 

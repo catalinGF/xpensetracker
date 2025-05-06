@@ -4,17 +4,17 @@ import com.xpensetracker.app.entity.Expense;
 import com.xpensetracker.app.exception.ExpenseNotFoundException;
 import com.xpensetracker.app.model.ExpenseDTO;
 import com.xpensetracker.app.repository.ExpenseRepository;
-import com.xpensetracker.app.service.api.ExpenseApiService;
+import com.xpensetracker.app.service.ExpenseService;
 import com.xpensetracker.app.util.ExpenseConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ExpenseApiServiceImpl implements ExpenseApiService {
+public class ExpenseServiceImpl implements ExpenseService {
 
     private final ExpenseRepository expenseRepository;
-    public ExpenseApiServiceImpl(ExpenseRepository expenseRepository) {
+    public ExpenseServiceImpl(ExpenseRepository expenseRepository) {
         this.expenseRepository = expenseRepository;
     }
 

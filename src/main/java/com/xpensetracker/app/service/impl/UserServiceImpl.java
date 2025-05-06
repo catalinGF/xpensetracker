@@ -4,18 +4,18 @@ import com.xpensetracker.app.entity.User;
 import com.xpensetracker.app.exception.UserNotFoundException;
 import com.xpensetracker.app.model.UserDTO;
 import com.xpensetracker.app.repository.UserRepository;
-import com.xpensetracker.app.service.api.UserApiService;
+import com.xpensetracker.app.service.UserService;
 import com.xpensetracker.app.util.UserConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserApiServiceImpl implements UserApiService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    public UserApiServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

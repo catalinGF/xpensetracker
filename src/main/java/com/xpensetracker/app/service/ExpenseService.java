@@ -1,10 +1,10 @@
-package com.xpensetracker.app.service.web;
+package com.xpensetracker.app.service;
 
 import com.xpensetracker.app.model.ExpenseDTO;
 
 import java.util.List;
 
-public interface ExpenseWebService {
+public interface ExpenseService {
 
     ExpenseDTO getExpenseById(Long id);
 

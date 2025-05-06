@@ -1,13 +1,10 @@
 package com.xpensetracker.app.controller.web;
 
 import com.xpensetracker.app.model.UserDTO;
-import com.xpensetracker.app.service.web.UserWebService;
+import com.xpensetracker.app.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.List;
@@ -15,31 +12,31 @@ import java.util.List;
 @Controller
 public class UserWebController {
 
-    private final UserWebService userWebService;
+    private final UserService userService;
 
 
-    public UserWebController(UserWebService userWebService) {
-        this.userWebService = userWebService;
+    public UserWebController(UserService userService) {
+        this.userService = userService;
     }
 
     /*Bellow are the methods for interaction with Thymeleaf*/
-    @GetMapping("/showusers")
+    @RequestMapping("/showusers")
     public String listUsers(Model model) {
-        List<UserDTO> users = userWebService.getAllUsers().stream().sorted(Comparator.comparing(UserDTO::id)).toList();
+        List<UserDTO> users = userService.getAllUsers().stream().sorted(Comparator.comparing(UserDTO::id)).toList();
         model.addAttribute("users", users);
         model.addAttribute("user", new UserDTO(null, "","", false));
         return "showusers";
     }
 
-    @PostMapping("/users/save")
+    @RequestMapping("/users/save")
     public String saveUser(@ModelAttribute("user") UserDTO userDTO) {
-        userWebService.createUser(userDTO);
+        userService.createUser(userDTO);
         return "redirect:/showusers";
     }
 
-    @GetMapping("/users/delete/{id}")
+    @RequestMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
-        userWebService.deleteUserById(id);
+        userService.deleteUserById(id);
         return "redirect:/showusers";
     }
  }

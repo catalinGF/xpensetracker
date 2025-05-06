@@ -1,10 +1,10 @@
-package com.xpensetracker.app.service.api;
+package com.xpensetracker.app.service;
 
 import com.xpensetracker.app.model.CategoryDTO;
 
 import java.util.List;
 
-public interface CategoryApiService {
+public interface CategoryService {
 
     CategoryDTO getCategoryById(long id);
 
