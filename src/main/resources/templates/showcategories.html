@@ -30,14 +30,13 @@
             <td th:text="${category.userName}"></td>
             <td th:text="${category.name}"></td>
             <td>
-                <a class="btn btn-primary" href="/categories/edit?id=1">Edit</a>
                 <a th:if="${!category.hasExpenses}"
                    th:href="@{'/categories/delete/' + ${category.id}}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('Do you really want to delete this category?');">
                     Delete
                 </a>
-                <span th:if="${category.hasExpenses}" class="text-muted">Cannot be delete- has expenses assigned</span>
+                <span th:if="${category.hasExpenses}" class="text-muted">Cannot be deleted - has expenses assigned</span>
             </td>
         </tr>
         </tbody>

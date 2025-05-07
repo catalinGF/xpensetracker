@@ -1,5 +1,6 @@
 package com.xpensetracker.app.controller.web;
 
+import com.xpensetracker.app.entity.Expense;
 import com.xpensetracker.app.model.ExpenseDTO;
 import com.xpensetracker.app.service.CategoryService;
 import com.xpensetracker.app.service.ExpenseService;
@@ -7,6 +8,7 @@ import com.xpensetracker.app.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Comparator;
@@ -43,6 +45,12 @@ public class ExpenseWebController {
         return "redirect:/showexpenses";
     }
 
- }
+    @RequestMapping("/expenses/delete/{id}")
+        public String deleteExpense(@PathVariable Long id) {
+        expenseService.deleteExpenseById(id);
+        return "redirect:/showexpenses";
+    }
+
+}
 
 

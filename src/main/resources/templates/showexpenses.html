@@ -25,6 +25,7 @@
             <th>Amount</th>
             <th>Date</th>
             <th>Category ID</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -35,10 +36,19 @@
             <td th:text="${expense.amount}"></td>
             <td th:text="${expense.date}"></td>
             <td th:text="${expense.categoryId}"></td>
+            <td>
+
+                <a th:href="@{'/expenses/delete/' + ${expense.id}}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Do you really want to delete this expense?');">
+                    Delete
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
     <p>
+
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addExpenseModal">Add expense!</button>
 
         <!-- Add Expense Modal -->
@@ -101,5 +111,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
-
 </html>
